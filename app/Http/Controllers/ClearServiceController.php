@@ -78,7 +78,7 @@ class ClearServiceController extends Controller
      */
     public function update(Request $request, ClearService $clearService)
     {
-        return new ClearServiceResource(ClearService::update($request->all()));
+        // return new ClearServiceResource(ClearService::update($request->all()));
     }
 
     /**
