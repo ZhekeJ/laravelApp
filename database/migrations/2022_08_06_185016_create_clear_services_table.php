@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('clear_services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('surname');
+            $table->string('email');
             $table->timestamps();
         });
     }

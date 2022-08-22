@@ -9,5 +9,6 @@ class ClearService extends Model
 {
     use HasFactory;
 
-  protected $fillable = ['name'];  
+  protected $fillable = ['name','surname', 'email'];  
+  
 }

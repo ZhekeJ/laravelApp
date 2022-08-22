@@ -16,10 +16,12 @@ Route::post('/register', RegisterController::class);
 Route::post('/logout', LogoutController::class);
 
 
+
 Route::get('/user', UserController::class)->middleware('auth:sanctum');
 
+
 Route::group(
-    ['prefix' => 'api', 'namespace' => 'App\\Http\\Controllers', 'middleware' => ['auth:sanctum']],
+    ['prefix' => 'api', 'namespace' => 'App\\Http\\Controllers'], //'middleware' => ['auth:sanctum'],
     function () {
         // Permissions
         Route::resource('auth/permissions', 'Auth\Permissions');
@@ -41,7 +43,8 @@ Route::group(
 
         Route::get('navbar/user-companies', 'NavbarController@userCompanies');
 
-
-        Route::resource('clear-service','ÇlearServiceController');
+        Route::resource('clear-service', ClearServiceController::class);
+       
     }
 );
+

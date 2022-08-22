@@ -19,7 +19,11 @@ class ClearServiceController extends Controller
     {
        // abort_if(Gate::denies('read-clear-service'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ClearServiceResource(ClearService::all());
+        // return new ClearServiceResource(ClearService::all());
+
+        $clearService = clearService::query()   
+                  ->latest('id') 
+                  ->get();
     }
 
     /**
@@ -42,7 +46,7 @@ class ClearServiceController extends Controller
     {
        // abort_if(Gate::denies('create-clear-service'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ClearServiceResource(ClearService::create($request->all));
+        return new ClearServiceResource(ClearService::create($request->all()));
     }
 
     /**
@@ -78,7 +82,11 @@ class ClearServiceController extends Controller
      */
     public function update(Request $request, ClearService $clearService)
     {
-        return new ClearServiceResource(ClearService::update($request->all()));
+        $clearService->update($request->all());
+        return response()->json([
+            'message' => "ClearService updated successfully",
+            'ClearService' => $clearService
+        ], 200);
     }
 
     /**
@@ -87,8 +95,11 @@ class ClearServiceController extends Controller
      * @param  \App\Models\ClearService  $clearService
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ClearService $clearService)
+    public function destroy(Request $request, ClearService $clearService)
     {
-        //
+        $clearService ->delete();
+        return response()->json([
+            'message' => "Service has been deleted successfully",
+        ]);
     }
 }
